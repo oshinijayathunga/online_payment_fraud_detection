@@ -107,50 +107,5 @@ Models were evaluated using:
 | v5 | Added `scale_pos_weight=10` to XGBoost | Directly penalize missed fraud cases |
 | v6 | Custom threshold (0.98) on XGBoost probabilities | Fine-tune precision/recall tradeoff for business needs |
 
----
 
-## 🛠️ Tech Stack
 
-- **Python 3**
-- `pandas`, `numpy` — data manipulation
-- `seaborn`, `matplotlib` — visualization
-- `scikit-learn` — ML models, metrics, resampling utilities
-- `imbalanced-learn` — SMOTE, SMOTEENN, RandomUnderSampler
-- `xgboost` — gradient boosting classifier
-
----
-
-## 🚀 Getting Started
-
-```bash
-# Clone the repository
-git clone https://github.com/your-username/payment-fraud-detection.git
-cd payment-fraud-detection
-
-# Install dependencies
-pip install pandas numpy seaborn matplotlib scikit-learn imbalanced-learn xgboost
-
-# Launch the notebook
-jupyter notebook payment_fraude_detection.ipynb
-```
-
-> **Note:** Update the dataset path in the first cell to point to your local CSV file.
-
----
-
-## 📁 Project Structure
-
-```
-payment-fraud-detection/
-│
-├── payment_fraude_detection.ipynb   # Main notebook
-├── README.md                        # Project documentation
-└── data/
-    └── new_file.csv                 # Dataset (not included — add your own)
-```
-
----
-
-## 🙌 Acknowledgements
-
-Dataset inspired by the [PaySim synthetic financial dataset](https://www.kaggle.com/datasets/ealaxi/paysim1) commonly used for fraud detection research.
