@@ -107,5 +107,47 @@ Models were evaluated using:
 | v5 | Added `scale_pos_weight=10` to XGBoost | Directly penalize missed fraud cases |
 | v6 | Custom threshold (0.98) on XGBoost probabilities | Fine-tune precision/recall tradeoff for business needs |
 
+---
+## 📊 Results — Final Model Performance
+
+### ✅ Best Model: XGBoost with Custom Threshold (0.98)
+
+| Metric | Legitimate (0) | Fraud (1) |
+|---|---|---|
+| Precision | 1.00 | 0.58 |
+| Recall | 1.00 | 0.73 |
+| F1-Score | 1.00 | 0.65 |
+| Support | 1,270,904 | 1,620 |
+
+### Confusion Matrix
+
+|  | Predicted: Legit | Predicted: Fraud |
+|---|---|---|
+| **Actual: Legit** | 1,270,061 ✅ | 843 ❌ |
+| **Actual: Fraud** | 436 ❌ | 1,184 ✅ |
+
+- **True Negatives:** 1,270,061 — legitimate transactions correctly cleared
+- **True Positives:** 1,184 — fraud cases correctly caught
+- **False Positives:** 843 — legitimate transactions incorrectly flagged
+- **False Negatives:** 436 — fraud cases missed
+
+> At threshold 0.98, the model requires 98% confidence before flagging a transaction as fraud, significantly cutting false alarms while still catching 73% of all fraudulent activity.
+
+### 🔑 Feature Importance (XGBoost)
+
+| Rank | Feature | Importance |
+|---|---|---|
+| 1 | `newbalanceOrig` | ~0.52 (dominant) |
+| 2 | `type_PAYMENT` | ~0.33 |
+| 3 | `type_CASH_OUT` | ~0.07 |
+| 4 | `newbalanceDest` | ~0.03 |
+| 5 | `amount` | ~0.02 |
+| 6 | `step` | ~0.01 |
+| 7 | `type_TRANSFER` | ~0.01 |
+| 8 | `type_DEBIT` | ~0.01 |
+
+The origin account's new balance after a transaction (`newbalanceOrig`) is by far the strongest signal — fraudulent transactions tend to drain the sender's account to zero. Transaction type is also highly predictive, with PAYMENT and CASH_OUT being the most fraud-associated categories.
+
+---
 **Dataset download**- https://drive.google.com/file/d/1zrXT2uiYI4E5yCpCAVdb6WqJ8HAmH2ei/view?usp=sharing
 
